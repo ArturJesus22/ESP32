@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Humidade ESP32</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-tint"></i> Monitor de Humidade</h1>
+                <p class="subtitle">Dados em tempo real do ESP32</p>
+            </div>
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span class="status-text" id="statusText">A Conectar...</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="dashboard">
+                <div class="card current-reading">
+                    <div class="card-header">
+                        <h2><i class="fas fa-thermometer-half"></i> Leitura Atual</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="humidity-display">
+                            <div class="humidity-value" id="humidityValue">--</div>
+                            <div class="humidity-unit">%</div>
+                        </div>
+                        <div class="humidity-label">Humidade Relativa</div>
+                    </div>
+                </div>
+
+                <div class="card temperature-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-temperature-high"></i> Temperatura</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="temperature-display">
+                            <div class="temperature-value" id="temperatureValue">--</div>
+                            <div class="temperature-unit">°C</div>
+                        </div>
+                        <div class="temperature-label">Temperatura Ambiente</div>
+                    </div>
+                </div>
+
+                <div class="card stats-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-chart-line"></i> Estatísticas</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-label">Máxima</div>
+                                <div class="stat-value" id="maxHumidity">--%</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Mínima</div>
+                                <div class="stat-value" id="minHumidity">--%</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Média</div>
+                                <div class="stat-value" id="avgHumidity">--%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-chart-area"></i> Histórico</h2>
+                        <div class="time-selector">
+                            <button class="time-btn active" data-time="1h">1H</button>
+                            <button class="time-btn" data-time="6h">6H</button>
+                            <button class="time-btn" data-time="24h">24H</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <canvas id="humidityChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-info-circle"></i> Informações do Sistema</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Última Atualização:</span>
+                                <span class="info-value" id="lastUpdate">--</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Intervalo de Leitura:</span>
+                                <span class="info-value">5 segundos</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Sensor:</span>
+                                <span class="info-value">DHT22</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Firmware:</span>
+                                <span class="info-value">ESP32 v1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Monitor de Humidade ESP32. Desenvolvido com ❤️ para IoT.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
